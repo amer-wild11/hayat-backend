@@ -1,0 +1,6 @@
+{
+  "env": {
+    "MONGO_PW": "plmoknijb111",
+    "JWT_KEY": "Hayat-key"
+  }
+}
