@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/"); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // File naming convention
+    cb(null, file.originalname + "+" + Date.now()); // File naming convention
   },
 });
 

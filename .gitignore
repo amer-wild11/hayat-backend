@@ -1,4 +1,1 @@
 node_modules
-nodemon.json/*
-# Local Netlify folder
-.netlify
