@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/"); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // File naming convention
+    cb(null, Date.now() + "-" + file.originalname); // File naming convention
   },
 });
 const upload = multer({ storage: storage });

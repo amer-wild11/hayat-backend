@@ -5,6 +5,7 @@ const multer = require("multer");
 const Hotels = require("../models/hotels");
 const checkAuth = require("../midleware/checkAuth");
 const fs = require("fs");
+const async = require("async");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/"); // Destination folder for uploaded files

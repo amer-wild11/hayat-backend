@@ -5,7 +5,7 @@ const destSchema = mongoose.Schema({
   thumbnail: { type: Object, required: true },
   name: { type: String, required: true },
   location: { type: String, required: true },
-  display_images: { type: Array },
+  display_images: { type: Array, required: true },
   created_at: { type: Number, default: Date.now },
   rate: { type: Number },
   desc: { type: String, required: true },

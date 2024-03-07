@@ -4,6 +4,7 @@ const Dests = require("../models/destinations");
 const mongoose = require("mongoose");
 const checkAuth = require("../midleware/checkAuth");
 const multer = require("multer");
+const async = require("async");
 
 const fs = require("fs");
 
@@ -12,7 +13,7 @@ const storage = multer.diskStorage({
     cb(null, "uploads/"); // Destination folder for uploaded files
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname); // File naming convention
+    cb(null, Date.now() + "-" + file.originalname); // File naming convention
   },
 });
 
@@ -126,7 +127,7 @@ router.delete("/:destenation_id", checkAuth, (req, res) => {
               message: "Error deleting images",
             });
           }
-
+          console.log(destenation.thumbnail);
           fs.unlink(destenation.thumbnail.path, (err) => {
             if (err) {
               console.error("Error deleting thumbnail:", err);

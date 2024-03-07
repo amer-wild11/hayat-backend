@@ -5,7 +5,7 @@ const server = http.createServer(app);
 const cors = require("cors");
 const io = socketIo(server, {
   cors: {
-    origin: ["*:*", "http://localhost:5173"],
+    origin: ["*:*", "http://localhost:5173", "https://hayat.iq"],
     methods: ["GET", "POST", "DELETE", "PATCH"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
@@ -115,6 +115,23 @@ resortsChangeStream.on("change", (change) => {
   if (change.operationType == "update") {
     Resorts.findOne({ _id: change.documentKey._id }).then((resort) => {
       io.emit("resortUpdated", resort);
+    });
+  }
+});
+
+const Dests = require("./api/models/destinations.js");
+const destsChangeStream = Dests.watch();
+
+destsChangeStream.on("change", (change) => {
+  if (change.operationType == "insert") {
+    io.emit("postDest", change.fullDocument);
+  }
+  if (change.operationType == "delete") {
+    io.emit("destDeleted", change.documentKey._id);
+  }
+  if (change.operationType == "update") {
+    Dests.findOne({ _id: change.documentKey._id }).then((dest) => {
+      io.emit("destUpdated", dest);
     });
   }
 });
