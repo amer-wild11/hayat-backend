@@ -5,11 +5,7 @@ const server = http.createServer(app);
 const cors = require("cors");
 const io = socketIo(server, {
   cors: {
-    origin: [
-      "https://hayat-dashboard-ac8fd.web.app",
-      "https://hayat-af1a9.web.app",
-      "https://hayat.iq",
-    ],
+    origin: ["*:*", "http://localhost:5173"],
     methods: ["GET", "POST", "DELETE", "PATCH"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
