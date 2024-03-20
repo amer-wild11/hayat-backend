@@ -2,12 +2,10 @@ const http = require("http");
 const app = require("./app.js");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
-const cors = require("cors");
 const io = socketIo(server, {
   cors: {
-    origin: ["*:*", "http://localhost:5173", "https://hayat.iq"],
+    origin: ["http://localhost:5173", "https://hayat.iq"],
     methods: ["GET", "POST", "DELETE", "PATCH"],
-    allowedHeaders: ["my-custom-header"],
     credentials: true,
   },
 });
